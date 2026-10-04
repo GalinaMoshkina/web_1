@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My home, my rules, my coffee</title>
+</head>
+<body>
+    <h1>My home, my rules, my coffee</h1>
+    <div class="card" style="min-height: auto;">
+        <dialog id="1">
+            <p>Всплывающее окно</p>
+            <button id="close">Закрыть</button>
+        </dialog>
+        <button id="open">Открыть</button>
+        <script>
+            const dialog = document.getElementById('1');
+            document.getElementById('open').addEventListener('click', () => dialog.showModal());
+            document.getElementById('close').addEventListener('click', () => dialog.close());
+        </script>
+    </div>
+</body>
+</html>
