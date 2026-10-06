@@ -1,0 +1,248 @@
+:root {
+    --bg:       #f2e6d0;
+    --card:     #fcfaf2;
+    --ink:      #1b2725;
+    --muted:    #55756c;
+    --accent:   #e89d43;
+    --accent-2: #1e3a54;
+    --danger:   #bd3a3a;
+    --line:     #e3dac9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Garamond", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.2px;
+}
+
+.hero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 48px;
+    background-image: url("cover.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(27, 39, 37, 0.35);
+    z-index: 1;
+}
+
+.HeroTitle {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--card);
+    text-align: center;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    letter-spacing: 0.5px;
+}
+
+.header_CartButton {
+    position: absolute;
+    top: 400px;
+    left: 1300px;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border: 1px solid rgba(252, 250, 242, 0.6);
+    border-radius: 4px;
+    background: rgba(27, 39, 37, 0.35);
+    backdrop-filter: blur(6px);
+    color: var(--card);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.header_CartButton:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--card);
+}
+
+.header_CartCount {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--accent);
+    color: var(--card);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.header_CartButton:hover .header_CartCount {
+    background: var(--card);
+    color: var(--accent);
+}
+
+
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 48px 100px;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-shadow: 0 4px 20px rgba(27, 39, 37, 0.02);
+}
+
+.card:hover {
+    border-color: var(--muted);
+    box-shadow: 0 20px 40px rgba(85, 117, 108, 0.2);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.35;
+}
+
+
+.CardImage {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 3px;
+    background: var(--line);
+}
+
+
+.CardPrice {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--accent-2);
+    letter-spacing: 0.4px;
+}
+
+dialog {
+    width: min(500px, 92vw);
+    padding: 40px;
+    border: none;
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--ink);
+    font-family: inherit;
+    box-shadow: 0 30px 80px rgba(27, 39, 37, 0.15);
+}
+
+dialog::backdrop {
+    background: rgba(242, 230, 208, 0.7); 
+    backdrop-filter: blur(5px);
+}
+
+dialog h3 {
+    margin: 0 0 16px;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--accent-2);
+}
+
+dialog p {
+    margin: 0 0 32px;
+    color: var(--ink);
+    opacity: 0.8;
+    font-size: 16px;
+}
+
+
+.button {
+    padding: 12px 26px;
+    border: 1px solid var(--muted);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.button:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+}
+
+.button--primary {
+    background: var(--accent-2);
+    border-color: var(--accent-2);
+    color: var(--card);
+}
+
+.button--primary:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: var(--card);
+    box-shadow: 0 8px 20px rgba(189, 58, 58, 0.25);
+}
+
+
+.OrderField span {
+    font-family: sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.OrderField input {
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--bg);
+    font: inherit;
+    color: var(--ink);
+    transition: all .25s ease;
+}
+
+.OrderField input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(232, 157, 67, 0.15);
+}
