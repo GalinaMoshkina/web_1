@@ -159,6 +159,113 @@ body {
     letter-spacing: 0.4px;
 }
 
+
+.CartTitle {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--accent-2);
+}
+
+.CartList {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.CartItem {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.CartItemTitle {
+    font-size: 15px;
+}
+
+.CartItemControls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.CartItemControls button {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.CartItemControls button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.CartItemSum {
+    font-weight: bold;
+    color: var(--accent-2);
+    min-width: 60px;
+    text-align: right;
+}
+
+.CartEmpty {
+    padding: 24px 0;
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+}
+
+.CartTotal {
+    margin: 16px 0 0;
+    text-align: right;
+    font-size: 17px;
+    color: var(--muted);
+}
+
+.CartTotal strong {
+    color: var(--accent-2);
+    font-size: 20px;
+}
+
+.CartActions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+
+dialog p {
+    margin: 0 0 32px;
+    color: var(--ink);
+    opacity: 0.8;
+    font-size: 16px;
+    max-height: 130px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+dialog p::-webkit-scrollbar {
+    width: 6px;
+}
+dialog p::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 3px;
+}
+dialog p::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+}
+
 dialog {
     width: min(500px, 92vw);
     padding: 40px;
@@ -256,6 +363,25 @@ dialog p {
     box-shadow: 0 8px 20px rgba(189, 58, 58, 0.25);
 }
 
+
+.OrderForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.OrderField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.OrderActions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
 
 .OrderField span {
     font-family: sans-serif;
