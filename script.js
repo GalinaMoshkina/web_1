@@ -59,7 +59,7 @@ function renderCart() {
     CartList.innerHTML = '';
 
     if (cart.length === 0) {
-        CartList.innerHTML = '<li class="CartEmpty">Cart is empty</li>';
+        CartList.innerHTML = '<li class="CartEmpty">cart is empty</li>';
     } else {
         cart.forEach(item => {
             const li = document.createElement('li');
@@ -140,7 +140,7 @@ const checkoutButton   = document.getElementById('checkoutButton');
 const cancelOrderButton = document.getElementById('cancelOrderButton');
 checkoutButton.addEventListener('click', () => {
     if (cart.length === 0) {
-        alert('Cart is empty');
+        alert('cart is empty');
         return;
     }
     CartDialog.close();
