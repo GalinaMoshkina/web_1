@@ -1,12 +1,12 @@
 :root {
-    --bg:       #f2e6d0;
-    --card:     #fcfaf2;
-    --ink:      #1b2725;
-    --muted:    #55756c;
-    --accent:   #e89d43;
+    --bg: #f2e6d0;
+    --card: #fcfaf2;
+    --ink: #1b2725;
+    --muted: #55756c;
+    --accent: #e89d43;
     --accent-2: #1e3a54;
-    --danger:   #bd3a3a;
-    --line:     #e3dac9;
+    --danger: #bd3a3a;
+    --line: #e3dac9;
 }
 
 * {
@@ -39,6 +39,7 @@ body {
     border-radius: 6px;
     overflow: hidden;
 }
+
 .hero::before {
     content: "";
     position: absolute;
@@ -258,10 +259,12 @@ dialog p {
 dialog p::-webkit-scrollbar {
     width: 6px;
 }
+
 dialog p::-webkit-scrollbar-thumb {
     background: var(--line);
     border-radius: 3px;
 }
+
 dialog p::-webkit-scrollbar-thumb:hover {
     background: var(--muted);
 }
@@ -278,7 +281,7 @@ dialog {
 }
 
 dialog::backdrop {
-    background: rgba(242, 230, 208, 0.7); 
+    background: rgba(242, 230, 208, 0.7);
     backdrop-filter: blur(5px);
 }
 
@@ -436,4 +439,10 @@ dialog h3 {
     .HeroTitle {
         font-size: 40px;
     }
+}
+
+.message-dialog {
+    text-align: center;
+    width: min(400px, 90vw);
+    padding: 30px;
 }

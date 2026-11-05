@@ -50,30 +50,61 @@ function getCount() {
     return cart.reduce((sum, i) => sum + i.qty, 0);
 }
 
-const CartList  = document.getElementById('CartList');
+const CartList = document.getElementById('CartList');
 const CartTotal = document.getElementById('CartTotal');
 const CartCount = document.getElementById('CartCount');
+const MessageDialog = document.getElementById('MessageDialog');
+const MessageText = document.getElementById('MessageText');
+const closeMessageBtn = document.getElementById('closeMessageBtn');
 
+function showMessage(text) {
+    MessageText.textContent = text;
+    MessageDialog.showModal();
+}
+
+closeMessageBtn.addEventListener('click', () => MessageDialog.close());
+MessageDialog.addEventListener('click', (e) => {
+    if (e.target === MessageDialog) MessageDialog.close();
+});
 
 function renderCart() {
-    CartList.innerHTML = '';
-
+    CartList.replaceChildren();
     if (cart.length === 0) {
-        CartList.innerHTML = '<li class="CartEmpty">cart is empty</li>';
+        const li = document.createElement('li');
+        li.className = 'CartEmpty';
+        li.textContent = 'cart is empty';
+        CartList.appendChild(li);
     } else {
         cart.forEach(item => {
             const li = document.createElement('li');
             li.className = 'CartItem';
-            li.innerHTML = `
-                <span class="CartItemTitle">${item.title}</span>
-                <div class="CartItemControls">
-                    <button type="button" data-action="dec" data-id="${item.id}">−</button>
-                    <span>${item.qty}</span>
-                    <button type="button" data-action="inc" data-id="${item.id}">+</button>
-                    <button type="button" data-action="remove" data-id="${item.id}">✕</button>
-                </div>
-                <span class="CartItemSum">${item.price * item.qty} €</span>
-            `;
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'CartItemTitle';
+            titleSpan.textContent = item.title;
+            const controlsDiv = document.createElement('div');
+            controlsDiv.className = 'CartItemControls';
+            const btnDec = document.createElement('button');
+            btnDec.type = 'button';
+            btnDec.textContent = '−';
+            btnDec.dataset.action = 'dec';
+            btnDec.dataset.id = item.id;
+            const qtySpan = document.createElement('span');
+            qtySpan.textContent = item.qty;
+            const btnInc = document.createElement('button');
+            btnInc.type = 'button';
+            btnInc.textContent = '+';
+            btnInc.dataset.action = 'inc';
+            btnInc.dataset.id = item.id;
+            const btnRemove = document.createElement('button');
+            btnRemove.type = 'button';
+            btnRemove.textContent = '✕';
+            btnRemove.dataset.action = 'remove';
+            btnRemove.dataset.id = item.id;
+            controlsDiv.append(btnDec, qtySpan, btnInc, btnRemove);
+            const sumSpan = document.createElement('span');
+            sumSpan.className = 'CartItemSum';
+            sumSpan.textContent = `${item.price * item.qty} €`;
+            li.append(titleSpan, controlsDiv, sumSpan);
             CartList.appendChild(li);
         });
     }
@@ -87,8 +118,8 @@ CartList.addEventListener('click', (e) => {
     const id = Number(btn.dataset.id);
     const action = btn.dataset.action;
 
-    if (action === 'inc')    changeQty(id, +1);
-    if (action === 'dec')    changeQty(id, -1);
+    if (action === 'inc') changeQty(id, +1);
+    if (action === 'dec') changeQty(id, -1);
     if (action === 'remove') removeItem(id);
 });
 
@@ -111,7 +142,7 @@ document.querySelectorAll('.card').forEach((card) => {
         e.stopPropagation();
 
         addToCart({
-            id:    Number(card.getAttribute('dataid')),
+            id: Number(card.getAttribute('dataid')),
             title: card.getAttribute('datatitle'),
             price: Number(card.getAttribute('dataprice')),
         });
@@ -120,8 +151,8 @@ document.querySelectorAll('.card').forEach((card) => {
 });
 
 
-const CartDialog   = document.getElementById('CartDialog');
-const openCartBtn  = document.getElementById('openCartButton');
+const CartDialog = document.getElementById('CartDialog');
+const openCartBtn = document.getElementById('openCartButton');
 const closeCartBtn = document.getElementById('closeCartButton');
 
 openCartBtn.addEventListener('click', () => CartDialog.showModal());
@@ -134,13 +165,13 @@ CartDialog.addEventListener('click', (e) => {
 renderCart();
 
 
-const OrderDialog      = document.getElementById('OrderDialog');
-const OrderForm        = document.getElementById('OrderForm');
-const checkoutButton   = document.getElementById('checkoutButton');
+const OrderDialog = document.getElementById('OrderDialog');
+const OrderForm = document.getElementById('OrderForm');
+const checkoutButton = document.getElementById('checkoutButton');
 const cancelOrderButton = document.getElementById('cancelOrderButton');
 checkoutButton.addEventListener('click', () => {
     if (cart.length === 0) {
-        alert('cart is empty');
+        showMessage('cart is empty');
         return;
     }
     CartDialog.close();
@@ -158,7 +189,7 @@ OrderForm.addEventListener('submit', (e) => {
         OrderForm.reportValidity();
         return;
     }
-    alert('Заказ создан!');
+    showMessage('order has been created');
     cart = [];
     saveCart();
     renderCart();
